@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout | Tiu OAuth2 App</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9fafb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem 3rem;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        form button {
+            background-color: #ef4444;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #dc2626;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Confirm Logout</h2>
+    <p>Are you sure you want to log out?</p>
+
+    <!-- Logout form (POST) -->
+    <form th:action="@{/logout}" method="post">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        <button type="submit">Logout</button>
+    </form>
+
+    <a href="/">Cancel</a>
+</div>
+</body>
+</html>

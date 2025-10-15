@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Profile</title></head>
+<body>
+<h1>Your Profile</h1>
+<p>Email: <span th:text="${user.email}"></span></p>
+<form th:action="@{/profile}" method="post" th:object="${user}">
+    <label>Display Name: <input type="text" th:field="*{displayName}" /></label><br/>
+    <label>Bio: <textarea th:field="*{bio}"></textarea></label><br/>
+    <button type="submit">Save</button>
+</form>
+<a href="/logout">Logout</a>
+</body>
+</html>
