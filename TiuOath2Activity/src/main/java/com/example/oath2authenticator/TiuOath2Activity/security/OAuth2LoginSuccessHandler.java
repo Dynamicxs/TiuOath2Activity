@@ -54,12 +54,10 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         String avatar = avatarObj1 != null ? avatarObj1.toString()
                 : (avatarObj2 != null ? avatarObj2.toString() : null);
 
-        // If email is null for providers like GitHub, you might need to call /user/emails endpoint.
         if (email == null) {
             logger.warn("Email is null for oauth user; provider={}, providerUserId={}", provider, providerUserId);
         }
 
-        // find or create auth provider + user
         AuthProvider authProvider = null;
         if (providerUserId != null) {
             authProvider = authProviderRepository
@@ -82,7 +80,6 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
                     });
         }
 
-        // redirect to /profile (this mapping must exist in a Controller as a view)
         response.sendRedirect("/profile");
     }
 }

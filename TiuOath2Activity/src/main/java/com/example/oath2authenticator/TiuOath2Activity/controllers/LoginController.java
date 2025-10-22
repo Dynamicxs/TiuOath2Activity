@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
 
-    @GetMapping("/login")
+    @GetMapping("http://localhost:3000")
     public String login() {
         return "login"; // use src/main/resources/templates/login.html
     }

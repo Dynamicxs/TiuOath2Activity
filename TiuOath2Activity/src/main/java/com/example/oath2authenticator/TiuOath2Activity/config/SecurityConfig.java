@@ -19,23 +19,22 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/login", "/css/**", "/js/**").permitAll()
-                        .requestMatchers("/h2-console/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/h2-console/**", "/api/**","/logout")
+                        .ignoringRequestMatchers("/api/**","/logout")
                 )
                 .headers(headers -> headers
-                        .frameOptions(frameOptions -> frameOptions.sameOrigin()) // Needed for H2 console
+                        .frameOptions(frameOptions -> frameOptions.sameOrigin())
                 )
                 .oauth2Login(oauth -> oauth
-                        .loginPage("/login")  // Custom login page
+                        .loginPage("http://localhost:3000")
                         .successHandler(successHandler)
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/logout")        // URL to trigger logout
-                        .logoutSuccessUrl("/")       // Redirect after logout
-                        .permitAll()                 // Allow anyone to access it
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .permitAll()
                 );
 
         return http.build();
